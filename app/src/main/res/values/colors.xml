@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparente">#00000000</color>
+    <color name="semi_transparente">#2D000000</color>
+    <color name="negrito_selecionado">#8309122C</color>
 </resources>
