@@ -27,6 +27,8 @@ import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
+    //crear el adaptador personalizado
+   private lateinit var adapter: ArrayAdapter<String>
     private var currentSongIndex = 0 // Índice de la canción actual
     private lateinit var listView: ListView
     private var mediaPlayer: MediaPlayer? = null
@@ -154,12 +156,12 @@ class MainActivity : AppCompatActivity() {
                 audioPaths.add(path)
             }
         }
-            val adapter = CustomAdapter(this, audioList)
+            adapter = CustomAdapter(this, audioList)
             listView.adapter = adapter
             listView.setOnItemClickListener { _, _, position, _ ->
                 playAudio(audioPaths[position])
                 currentSongIndex = position
-                adapter.setSelectedPosition(position) // Cambia la posición seleccionada
+                (adapter as CustomAdapter).setSelectedPosition(position) // Cambia la posición seleccionada
             }
 
 
@@ -308,11 +310,11 @@ private fun play_pause(){
     }
 
     private fun changePosition(){
-        val adapter = CustomAdapter(this, audioList)
+        adapter = CustomAdapter(this, audioList)
         listView.adapter = adapter
         playAudio(audioPaths[currentSongIndex])
         currentSongIndex = currentSongIndex
-        adapter.setSelectedPosition(currentSongIndex) // Cambia la posición seleccionada
+        (adapter as CustomAdapter).setSelectedPosition(currentSongIndex) // Cambia la posición seleccionada
     }
 
     private fun backSound() {
